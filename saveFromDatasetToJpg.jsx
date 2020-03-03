@@ -46,8 +46,8 @@ getDataSetNames = function(csvFileRef) {
 
 // prompt for file
 var csvFileRef = File.openDialog("Select dataset file: ");
-fileImportDataSets(csvFileRef); //inport the CSV file into the template
-var datasetNames = getDataSetNames(csvFileRef);// set up the dataset array
+fileImportDataSets(csvFileRef); //import the CSV file into the template
+var datasetNames = getDataSetNames(csvFileRef); // set up the dataset array
 
 // work with artboards
 var doc = app.activeDocument;
