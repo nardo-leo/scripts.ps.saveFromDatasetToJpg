@@ -52,7 +52,7 @@ var datasetNames = getDataSetNames(csvFileRef); // set up the dataset array
 // work with artboards
 var doc = app.activeDocument;
 var artbrd = doc.layerSets; //return artboards as array
-var fldr =Folder.selectDialog("Choose Save Location", "");
+var fldr = Folder.selectDialog("Choose Save Location", "");
 var artname;
 
 function exportArtboard(datasetNum){
@@ -65,7 +65,7 @@ function exportArtboard(datasetNum){
             saveOptions.embedColorProfile = true;
             saveOptions.formatOptions = FormatOptions.STANDARDBASELINE;
             saveOptions.matte = MatteType.NONE;
-            saveOptions.quality = 8;
+            saveOptions.quality = 3;
             app.activeDocument.saveAs(saveFile, saveOptions, true, Extension.LOWERCASE);
             app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
         }
