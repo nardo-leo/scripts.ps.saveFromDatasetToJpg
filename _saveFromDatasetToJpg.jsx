@@ -71,9 +71,7 @@ for (i=1; i < datasetNames.length; i++) {
     var Path = decodeURI(activeDocument.path);
     var saveFile = File(Path + "/" + Name + "#" + datasetNames[i])
     app.activeDocument.saveAs(saveFile ,jpgOptns , true, Extension.LOWERCASE);
-    app.setTimeout( function() {
-        app.activeDocument.activeHistoryState = savedState;
-    }, 500 )
+    app.activeDocument.activeHistoryState = savedState;
     }
 }
 //loop to next data set
