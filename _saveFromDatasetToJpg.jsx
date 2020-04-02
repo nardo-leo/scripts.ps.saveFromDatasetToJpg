@@ -3,9 +3,6 @@
 main();
 function main(){
 
-// save original state of document
-var savedState = app.activeDocument.activeHistoryState;
-
 // import CSV-dataset
 
 fileImportDataSets = function(file) {
@@ -35,7 +32,7 @@ executeAction( charIDToTypeID( "Aply" ), desc, DialogModes.NO );
 getDataSetNames = function(csvFileRef) {
      _ftn = function(string){
           var csvItems = string.split(",");
-          datasetName = csvItems[0];
+          datasetName = csvItems[0]
           return datasetName;
      }
      csvFileRef.open();
@@ -56,7 +53,7 @@ var jpgOptns = new JPEGSaveOptions();
      jpgOptns.formatOptions = FormatOptions.STANDARDBASELINE;
      jpgOptns.embedColorProfile = true;
      jpgOptns.matte = MatteType.NONE;
-     jpgOptns.quality = 3;
+     jpgOptns.quality = 2;
 
 //prompt for file
 
@@ -64,14 +61,19 @@ var csvFileRef = File.openDialog("Please select dataset file: ");
 fileImportDataSets(csvFileRef); //inport the CSV file into the template
 var datasetNames = getDataSetNames(csvFileRef);// set up the dataset array
 
+// save original state of document
+var savedState = app.activeDocument.activeHistoryState;
+
 //setup a loop for your data set names
 
 for (i=1; i < datasetNames.length; i++) {
+    applyDataSet(datasetNames[i]);
     var Name = decodeURI(activeDocument.name).replace(/\.[^\.]+$/, '');
     var Path = decodeURI(activeDocument.path);
     var saveFile = File(Path + "/" + Name + "#" + datasetNames[i])
-    app.activeDocument.saveAs(saveFile ,jpgOptns , true, Extension.LOWERCASE);
+    app.activeDocument.saveAs (saveFile ,jpgOptns , true, Extension.LOWERCASE);
     app.activeDocument.activeHistoryState = savedState;
     }
 }
+
 //loop to next data set
