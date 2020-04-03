@@ -176,10 +176,14 @@ function select() {
 select();
 }
 
+// save original state of document
+var savedState = app.activeDocument.activeHistoryState;
+
 // setup a loop for your data set names
 for (i=1; i < datasetNames.length; i++) {
     applyDataSet(datasetNames[i]);
     exportArtboard(i);
+    app.activeDocument.activeHistoryState = savedState;
     }
 }
 
