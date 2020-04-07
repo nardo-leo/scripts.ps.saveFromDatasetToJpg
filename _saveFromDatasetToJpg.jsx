@@ -53,14 +53,17 @@ var datasetNames = getDataSetNames(csvFileRef); // set up the dataset array
 var doc = app.activeDocument;
 var artbrd = doc.layerSets; //return artboards as array
 var fldr = Folder.selectDialog("Choose Save Location", "");
-var artname;
 
-function exportArtboard(datasetNum){
-    for (var z=0;z<artbrd.length;z++){
+function exportArtboard(datasetNum) {
+    for (var z=0;z<artbrd.length;z++) {
             artname=artbrd[z].name;
             selectart();
             cutpaste();
-            var saveFile = new File(fldr + "/" + artname + "_#" + datasetNum + ".jpg");
+            var saveFolder = new Folder(fldr + "/" + artname);
+            if (! saveFolder.exist) {
+                saveFolder.create();
+            }
+            var saveFile = new File(saveFolder + "/" + datasetNum + ".jpg");
             var saveOptions = new JPEGSaveOptions();
             saveOptions.embedColorProfile = true;
             saveOptions.formatOptions = FormatOptions.STANDARDBASELINE;
@@ -68,7 +71,7 @@ function exportArtboard(datasetNum){
             saveOptions.quality = 3;
             app.activeDocument.saveAs(saveFile, saveOptions, true, Extension.LOWERCASE);
             app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
-        }
+    }
 }
 
 function cutpaste(){
