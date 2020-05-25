@@ -12,8 +12,8 @@ fileImportDataSets = function(file) {
     desc.putPath( charIDToTypeID( "Usng" ), new File( file ) );
     desc.putEnumerated( charIDToTypeID( "Encd" ), stringIDToTypeID( "dataSetEncoding" ), stringIDToTypeID( "dataSetEncodingUTF8" ) );
     desc.putBoolean( stringIDToTypeID( "eraseAll" ), true );
-    desc.putBoolean( stringIDToTypeID( "useFirstColumn" ), true );
-executeAction( stringIDToTypeID( "importDataSets" ), desc, DialogModes.NO );
+    desc.putBoolean( stringIDToTypeID( "useFirstColumn" ), false );
+    executeAction( stringIDToTypeID( "importDataSets" ), desc, DialogModes.NO );
 }
 
 // apply dataset from CSV
@@ -22,26 +22,21 @@ applyDataSet = function(setName) {
     var setRef = new ActionReference();
     setRef.putName( stringIDToTypeID( "dataSetClass" ), setName );
     desc.putReference( charIDToTypeID( "null" ), setRef );
-executeAction( charIDToTypeID( "Aply" ), desc, DialogModes.NO );
-    }
+    executeAction( charIDToTypeID( "Aply" ), desc, DialogModes.NO );
+}
 
 // read CSV line by line
 getDataSetNames = function(csvFileRef) {
-     _ftn = function(string){
-          var csvItems = string.split(",");
-          datasetName = csvItems[0];
-          return datasetName;
-     }
-     csvFileRef.open();
-     var datasetArray = new Array();
-     var i = 0;
-     while (csvString = csvFileRef.readln()) {
-          if (csvString.length < 2) continue; // Skip empty lines
-          datasetArray[i] = _ftn(csvString);
-          i++;
-     }
-     csvFileRef.close();
-     return datasetArray;
+    csvFileRef.open();
+    var datasetArray = new Array();
+    var i = 0;
+    while (csvString = csvFileRef.readln()) {
+         if (csvString.length < 2) continue; // Skip empty lines
+         datasetArray[i] = 'Data Set ' + i;
+         i++;
+    }
+    csvFileRef.close();
+    return datasetArray;
 }
 
 // prompt for file
