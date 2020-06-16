@@ -63,7 +63,7 @@ function exportArtboard(datasetNum) {
             saveOptions.embedColorProfile = true;
             saveOptions.formatOptions = FormatOptions.STANDARDBASELINE;
             saveOptions.matte = MatteType.NONE;
-            saveOptions.quality = 3;
+            saveOptions.quality = 4;
             app.activeDocument.saveAs(saveFile, saveOptions, true, Extension.LOWERCASE);
             app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
     }
