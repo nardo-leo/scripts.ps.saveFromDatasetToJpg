@@ -28,5 +28,3 @@ If rational numbers are used, use dot symbol as a separator (e.g. $ 47.54).
 ## Authors
 
 * Leo Nardo
-
-See also the list of [contributors](http://192.168.88.240:3000/leonardo/scripts.ps.saveFromDatasetToJpg) who participated in this project.
